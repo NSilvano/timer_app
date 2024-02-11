@@ -1,3 +1,8 @@
+/// This class exposes a tick function
+/// which takes the number of ticks (seconds)
+/// returns a stream which emits the remaining
+/// seconds every second.
+
 class Ticker {
   const Ticker();
   Stream<int> tick({required int ticks}) {
