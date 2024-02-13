@@ -852,7 +852,7 @@ class __$$TimerInitialImplCopyWithImpl<$Res>
     Object? duration = null,
   }) {
     return _then(_$TimerInitialImpl(
-      duration: null == duration
+      null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
@@ -863,7 +863,7 @@ class __$$TimerInitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TimerInitialImpl implements TimerInitial {
-  const _$TimerInitialImpl({required this.duration});
+  const _$TimerInitialImpl(this.duration);
 
   @override
   final int duration;
@@ -967,8 +967,7 @@ class _$TimerInitialImpl implements TimerInitial {
 }
 
 abstract class TimerInitial implements TimerState {
-  const factory TimerInitial({required final int duration}) =
-      _$TimerInitialImpl;
+  const factory TimerInitial(final int duration) = _$TimerInitialImpl;
 
   int get duration;
   @JsonKey(ignore: true)
@@ -999,7 +998,7 @@ class __$$TimerRunPauseImplCopyWithImpl<$Res>
     Object? duration = null,
   }) {
     return _then(_$TimerRunPauseImpl(
-      duration: null == duration
+      null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
@@ -1010,7 +1009,7 @@ class __$$TimerRunPauseImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TimerRunPauseImpl implements TimerRunPause {
-  const _$TimerRunPauseImpl({required this.duration});
+  const _$TimerRunPauseImpl(this.duration);
 
   @override
   final int duration;
@@ -1114,8 +1113,7 @@ class _$TimerRunPauseImpl implements TimerRunPause {
 }
 
 abstract class TimerRunPause implements TimerState {
-  const factory TimerRunPause({required final int duration}) =
-      _$TimerRunPauseImpl;
+  const factory TimerRunPause(final int duration) = _$TimerRunPauseImpl;
 
   int get duration;
   @JsonKey(ignore: true)
@@ -1146,7 +1144,7 @@ class __$$TimerRunInProgressImplCopyWithImpl<$Res>
     Object? duration = null,
   }) {
     return _then(_$TimerRunInProgressImpl(
-      duration: null == duration
+      null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
@@ -1157,7 +1155,7 @@ class __$$TimerRunInProgressImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$TimerRunInProgressImpl implements TimerRunInProgress {
-  const _$TimerRunInProgressImpl({required this.duration});
+  const _$TimerRunInProgressImpl(this.duration);
 
   @override
   final int duration;
@@ -1262,7 +1260,7 @@ class _$TimerRunInProgressImpl implements TimerRunInProgress {
 }
 
 abstract class TimerRunInProgress implements TimerState {
-  const factory TimerRunInProgress({required final int duration}) =
+  const factory TimerRunInProgress(final int duration) =
       _$TimerRunInProgressImpl;
 
   int get duration;
