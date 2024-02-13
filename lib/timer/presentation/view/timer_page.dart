@@ -49,36 +49,16 @@ class TimerText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TimerBloc, TimerState>(builder: (context, state) {
-      late String minutesStr;
-      late String secondsStr;
-
-      state.when(
-        initial: (duration) {
-          minutesStr =
-              ((duration / 60) % 60).floor().toString().padLeft(2, '0');
-          secondsStr = (duration % 60).floor().toString().padLeft(2, '0');
-        },
-        runPause: (duration) {
-          minutesStr =
-              ((duration / 60) % 60).floor().toString().padLeft(2, '0');
-          secondsStr = (duration % 60).floor().toString().padLeft(2, '0');
-        },
-        runInProgress: (duration) {
-          minutesStr =
-              ((duration / 60) % 60).floor().toString().padLeft(2, '0');
-          secondsStr = (duration % 60).floor().toString().padLeft(2, '0');
-        },
-        runComplete: () {
-          minutesStr = '00';
-          secondsStr = '00';
-        },
-      );
-
-      return Text(
-        '$minutesStr:$secondsStr',
-        style: Theme.of(context).textTheme.headlineLarge,
-      );
-    });
+    final duration = context.select((TimerBloc bloc) => bloc.state.duration);
+    final minutesStr =
+        ((duration / 60) % 60).floor().toString().padLeft(2, '0');
+    final secondsStr = (duration % 60).toString().padLeft(2, '0');
+    return Text(
+      '$minutesStr:$secondsStr',
+      style: Theme.of(context)
+          .textTheme
+          .displayLarge
+          ?.copyWith(fontWeight: FontWeight.w500),
+    );
   }
 }

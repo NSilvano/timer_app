@@ -9,9 +9,10 @@ part 'timer_state.dart';
 part 'timer_bloc.freezed.dart';
 
 class TimerBloc extends Bloc<TimerEvent, TimerState> {
+  static const int duration = 60;
   TimerBloc({required Ticker ticker})
       : _ticker = ticker,
-        super(const TimerState.initial(_duration)) {
+        super(TimerState.initial()) {
     on<TimerStarted>(_onStarted);
     on<TimerPaused>(_onPaused);
     on<TimerResumed>(_onResumed);
@@ -20,7 +21,6 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
   }
 
   final Ticker _ticker;
-  static const int _duration = 60;
 
   StreamSubscription<int>? _tickerSubscription;
 
@@ -31,35 +31,35 @@ class TimerBloc extends Bloc<TimerEvent, TimerState> {
   }
 
   void _onStarted(TimerStarted event, Emitter<TimerState> emit) {
-    emit(TimerRunInProgress(event.duration));
+    emit(TimerState.runInProgress(event.duration));
     _tickerSubscription?.cancel();
     _tickerSubscription = _ticker
         .tick(ticks: event.duration)
-        .listen((duration) => add(const TimerTicked(duration: _duration)));
+        .listen((duration) => add(TimerTicked(duration: duration)));
   }
 
   void _onPaused(TimerPaused event, Emitter<TimerState> emit) {
-    if (state is TimerRunInProgress) {
+    if (state == TimerState.runInProgress(duration)) {
       _tickerSubscription?.pause();
-      emit(const TimerRunPause(_duration));
+      emit(TimerState.runInProgress(state.duration));
     }
   }
 
   void _onResumed(TimerResumed event, Emitter<TimerState> emit) {
-    if (state is TimerRunPause) {
+    if (state == TimerState.runPause(duration)) {
       _tickerSubscription?.resume();
-      emit(const TimerRunInProgress(_duration));
+      emit(TimerState.runInProgress(state.duration));
     }
   }
 
   void _onReset(TimerReset event, Emitter<TimerState> emit) {
     _tickerSubscription?.cancel();
-    emit(const TimerInitial(_duration));
+    emit(TimerState.initial());
   }
 
   void _onTicked(TimerTicked event, Emitter<TimerState> emit) {
     emit(event.duration > 0
-        ? TimerRunInProgress(event.duration)
-        : const TimerState.runComplete());
+        ? TimerState.runInProgress(event.duration)
+        : TimerState.runComplete());
   }
 }

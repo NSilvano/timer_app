@@ -759,55 +759,10 @@ abstract class TimerTicked implements TimerEvent {
 
 /// @nodoc
 mixin _$TimerState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int duration) initial,
-    required TResult Function(int duration) runPause,
-    required TResult Function(int duration) runInProgress,
-    required TResult Function() runComplete,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int duration)? initial,
-    TResult? Function(int duration)? runPause,
-    TResult? Function(int duration)? runInProgress,
-    TResult? Function()? runComplete,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int duration)? initial,
-    TResult Function(int duration)? runPause,
-    TResult Function(int duration)? runInProgress,
-    TResult Function()? runComplete,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TimerInitial value) initial,
-    required TResult Function(TimerRunPause value) runPause,
-    required TResult Function(TimerRunInProgress value) runInProgress,
-    required TResult Function(TimerRunComplete value) runComplete,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TimerInitial value)? initial,
-    TResult? Function(TimerRunPause value)? runPause,
-    TResult? Function(TimerRunInProgress value)? runInProgress,
-    TResult? Function(TimerRunComplete value)? runComplete,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TimerInitial value)? initial,
-    TResult Function(TimerRunPause value)? runPause,
-    TResult Function(TimerRunInProgress value)? runInProgress,
-    TResult Function(TimerRunComplete value)? runComplete,
-    required TResult orElse(),
-  }) =>
+  int get duration => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TimerStateCopyWith<TimerState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -816,6 +771,8 @@ abstract class $TimerStateCopyWith<$Res> {
   factory $TimerStateCopyWith(
           TimerState value, $Res Function(TimerState) then) =
       _$TimerStateCopyWithImpl<$Res, TimerState>;
+  @useResult
+  $Res call({int duration});
 }
 
 /// @nodoc
@@ -827,23 +784,38 @@ class _$TimerStateCopyWithImpl<$Res, $Val extends TimerState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? duration = null,
+  }) {
+    return _then(_value.copyWith(
+      duration: null == duration
+          ? _value.duration
+          : duration // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$TimerInitialImplCopyWith<$Res> {
-  factory _$$TimerInitialImplCopyWith(
-          _$TimerInitialImpl value, $Res Function(_$TimerInitialImpl) then) =
-      __$$TimerInitialImplCopyWithImpl<$Res>;
+abstract class _$$TimerStateImplCopyWith<$Res>
+    implements $TimerStateCopyWith<$Res> {
+  factory _$$TimerStateImplCopyWith(
+          _$TimerStateImpl value, $Res Function(_$TimerStateImpl) then) =
+      __$$TimerStateImplCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({int duration});
 }
 
 /// @nodoc
-class __$$TimerInitialImplCopyWithImpl<$Res>
-    extends _$TimerStateCopyWithImpl<$Res, _$TimerInitialImpl>
-    implements _$$TimerInitialImplCopyWith<$Res> {
-  __$$TimerInitialImplCopyWithImpl(
-      _$TimerInitialImpl _value, $Res Function(_$TimerInitialImpl) _then)
+class __$$TimerStateImplCopyWithImpl<$Res>
+    extends _$TimerStateCopyWithImpl<$Res, _$TimerStateImpl>
+    implements _$$TimerStateImplCopyWith<$Res> {
+  __$$TimerStateImplCopyWithImpl(
+      _$TimerStateImpl _value, $Res Function(_$TimerStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -851,8 +823,8 @@ class __$$TimerInitialImplCopyWithImpl<$Res>
   $Res call({
     Object? duration = null,
   }) {
-    return _then(_$TimerInitialImpl(
-      null == duration
+    return _then(_$TimerStateImpl(
+      duration: null == duration
           ? _value.duration
           : duration // ignore: cast_nullable_to_non_nullable
               as int,
@@ -862,22 +834,22 @@ class __$$TimerInitialImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TimerInitialImpl implements TimerInitial {
-  const _$TimerInitialImpl(this.duration);
+class _$TimerStateImpl implements _TimerState {
+  const _$TimerStateImpl({required this.duration});
 
   @override
   final int duration;
 
   @override
   String toString() {
-    return 'TimerState.initial(duration: $duration)';
+    return 'TimerState(duration: $duration)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TimerInitialImpl &&
+            other is _$TimerStateImpl &&
             (identical(other.duration, duration) ||
                 other.duration == duration));
   }
@@ -888,497 +860,17 @@ class _$TimerInitialImpl implements TimerInitial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TimerInitialImplCopyWith<_$TimerInitialImpl> get copyWith =>
-      __$$TimerInitialImplCopyWithImpl<_$TimerInitialImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int duration) initial,
-    required TResult Function(int duration) runPause,
-    required TResult Function(int duration) runInProgress,
-    required TResult Function() runComplete,
-  }) {
-    return initial(duration);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int duration)? initial,
-    TResult? Function(int duration)? runPause,
-    TResult? Function(int duration)? runInProgress,
-    TResult? Function()? runComplete,
-  }) {
-    return initial?.call(duration);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int duration)? initial,
-    TResult Function(int duration)? runPause,
-    TResult Function(int duration)? runInProgress,
-    TResult Function()? runComplete,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(duration);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TimerInitial value) initial,
-    required TResult Function(TimerRunPause value) runPause,
-    required TResult Function(TimerRunInProgress value) runInProgress,
-    required TResult Function(TimerRunComplete value) runComplete,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TimerInitial value)? initial,
-    TResult? Function(TimerRunPause value)? runPause,
-    TResult? Function(TimerRunInProgress value)? runInProgress,
-    TResult? Function(TimerRunComplete value)? runComplete,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TimerInitial value)? initial,
-    TResult Function(TimerRunPause value)? runPause,
-    TResult Function(TimerRunInProgress value)? runInProgress,
-    TResult Function(TimerRunComplete value)? runComplete,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  _$$TimerStateImplCopyWith<_$TimerStateImpl> get copyWith =>
+      __$$TimerStateImplCopyWithImpl<_$TimerStateImpl>(this, _$identity);
 }
 
-abstract class TimerInitial implements TimerState {
-  const factory TimerInitial(final int duration) = _$TimerInitialImpl;
+abstract class _TimerState implements TimerState {
+  const factory _TimerState({required final int duration}) = _$TimerStateImpl;
 
+  @override
   int get duration;
+  @override
   @JsonKey(ignore: true)
-  _$$TimerInitialImplCopyWith<_$TimerInitialImpl> get copyWith =>
+  _$$TimerStateImplCopyWith<_$TimerStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$TimerRunPauseImplCopyWith<$Res> {
-  factory _$$TimerRunPauseImplCopyWith(
-          _$TimerRunPauseImpl value, $Res Function(_$TimerRunPauseImpl) then) =
-      __$$TimerRunPauseImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int duration});
-}
-
-/// @nodoc
-class __$$TimerRunPauseImplCopyWithImpl<$Res>
-    extends _$TimerStateCopyWithImpl<$Res, _$TimerRunPauseImpl>
-    implements _$$TimerRunPauseImplCopyWith<$Res> {
-  __$$TimerRunPauseImplCopyWithImpl(
-      _$TimerRunPauseImpl _value, $Res Function(_$TimerRunPauseImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? duration = null,
-  }) {
-    return _then(_$TimerRunPauseImpl(
-      null == duration
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$TimerRunPauseImpl implements TimerRunPause {
-  const _$TimerRunPauseImpl(this.duration);
-
-  @override
-  final int duration;
-
-  @override
-  String toString() {
-    return 'TimerState.runPause(duration: $duration)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TimerRunPauseImpl &&
-            (identical(other.duration, duration) ||
-                other.duration == duration));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, duration);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TimerRunPauseImplCopyWith<_$TimerRunPauseImpl> get copyWith =>
-      __$$TimerRunPauseImplCopyWithImpl<_$TimerRunPauseImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int duration) initial,
-    required TResult Function(int duration) runPause,
-    required TResult Function(int duration) runInProgress,
-    required TResult Function() runComplete,
-  }) {
-    return runPause(duration);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int duration)? initial,
-    TResult? Function(int duration)? runPause,
-    TResult? Function(int duration)? runInProgress,
-    TResult? Function()? runComplete,
-  }) {
-    return runPause?.call(duration);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int duration)? initial,
-    TResult Function(int duration)? runPause,
-    TResult Function(int duration)? runInProgress,
-    TResult Function()? runComplete,
-    required TResult orElse(),
-  }) {
-    if (runPause != null) {
-      return runPause(duration);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TimerInitial value) initial,
-    required TResult Function(TimerRunPause value) runPause,
-    required TResult Function(TimerRunInProgress value) runInProgress,
-    required TResult Function(TimerRunComplete value) runComplete,
-  }) {
-    return runPause(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TimerInitial value)? initial,
-    TResult? Function(TimerRunPause value)? runPause,
-    TResult? Function(TimerRunInProgress value)? runInProgress,
-    TResult? Function(TimerRunComplete value)? runComplete,
-  }) {
-    return runPause?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TimerInitial value)? initial,
-    TResult Function(TimerRunPause value)? runPause,
-    TResult Function(TimerRunInProgress value)? runInProgress,
-    TResult Function(TimerRunComplete value)? runComplete,
-    required TResult orElse(),
-  }) {
-    if (runPause != null) {
-      return runPause(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TimerRunPause implements TimerState {
-  const factory TimerRunPause(final int duration) = _$TimerRunPauseImpl;
-
-  int get duration;
-  @JsonKey(ignore: true)
-  _$$TimerRunPauseImplCopyWith<_$TimerRunPauseImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$TimerRunInProgressImplCopyWith<$Res> {
-  factory _$$TimerRunInProgressImplCopyWith(_$TimerRunInProgressImpl value,
-          $Res Function(_$TimerRunInProgressImpl) then) =
-      __$$TimerRunInProgressImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int duration});
-}
-
-/// @nodoc
-class __$$TimerRunInProgressImplCopyWithImpl<$Res>
-    extends _$TimerStateCopyWithImpl<$Res, _$TimerRunInProgressImpl>
-    implements _$$TimerRunInProgressImplCopyWith<$Res> {
-  __$$TimerRunInProgressImplCopyWithImpl(_$TimerRunInProgressImpl _value,
-      $Res Function(_$TimerRunInProgressImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? duration = null,
-  }) {
-    return _then(_$TimerRunInProgressImpl(
-      null == duration
-          ? _value.duration
-          : duration // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$TimerRunInProgressImpl implements TimerRunInProgress {
-  const _$TimerRunInProgressImpl(this.duration);
-
-  @override
-  final int duration;
-
-  @override
-  String toString() {
-    return 'TimerState.runInProgress(duration: $duration)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TimerRunInProgressImpl &&
-            (identical(other.duration, duration) ||
-                other.duration == duration));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, duration);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TimerRunInProgressImplCopyWith<_$TimerRunInProgressImpl> get copyWith =>
-      __$$TimerRunInProgressImplCopyWithImpl<_$TimerRunInProgressImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int duration) initial,
-    required TResult Function(int duration) runPause,
-    required TResult Function(int duration) runInProgress,
-    required TResult Function() runComplete,
-  }) {
-    return runInProgress(duration);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int duration)? initial,
-    TResult? Function(int duration)? runPause,
-    TResult? Function(int duration)? runInProgress,
-    TResult? Function()? runComplete,
-  }) {
-    return runInProgress?.call(duration);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int duration)? initial,
-    TResult Function(int duration)? runPause,
-    TResult Function(int duration)? runInProgress,
-    TResult Function()? runComplete,
-    required TResult orElse(),
-  }) {
-    if (runInProgress != null) {
-      return runInProgress(duration);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TimerInitial value) initial,
-    required TResult Function(TimerRunPause value) runPause,
-    required TResult Function(TimerRunInProgress value) runInProgress,
-    required TResult Function(TimerRunComplete value) runComplete,
-  }) {
-    return runInProgress(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TimerInitial value)? initial,
-    TResult? Function(TimerRunPause value)? runPause,
-    TResult? Function(TimerRunInProgress value)? runInProgress,
-    TResult? Function(TimerRunComplete value)? runComplete,
-  }) {
-    return runInProgress?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TimerInitial value)? initial,
-    TResult Function(TimerRunPause value)? runPause,
-    TResult Function(TimerRunInProgress value)? runInProgress,
-    TResult Function(TimerRunComplete value)? runComplete,
-    required TResult orElse(),
-  }) {
-    if (runInProgress != null) {
-      return runInProgress(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TimerRunInProgress implements TimerState {
-  const factory TimerRunInProgress(final int duration) =
-      _$TimerRunInProgressImpl;
-
-  int get duration;
-  @JsonKey(ignore: true)
-  _$$TimerRunInProgressImplCopyWith<_$TimerRunInProgressImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$TimerRunCompleteImplCopyWith<$Res> {
-  factory _$$TimerRunCompleteImplCopyWith(_$TimerRunCompleteImpl value,
-          $Res Function(_$TimerRunCompleteImpl) then) =
-      __$$TimerRunCompleteImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$TimerRunCompleteImplCopyWithImpl<$Res>
-    extends _$TimerStateCopyWithImpl<$Res, _$TimerRunCompleteImpl>
-    implements _$$TimerRunCompleteImplCopyWith<$Res> {
-  __$$TimerRunCompleteImplCopyWithImpl(_$TimerRunCompleteImpl _value,
-      $Res Function(_$TimerRunCompleteImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$TimerRunCompleteImpl implements TimerRunComplete {
-  const _$TimerRunCompleteImpl();
-
-  @override
-  String toString() {
-    return 'TimerState.runComplete()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TimerRunCompleteImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int duration) initial,
-    required TResult Function(int duration) runPause,
-    required TResult Function(int duration) runInProgress,
-    required TResult Function() runComplete,
-  }) {
-    return runComplete();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int duration)? initial,
-    TResult? Function(int duration)? runPause,
-    TResult? Function(int duration)? runInProgress,
-    TResult? Function()? runComplete,
-  }) {
-    return runComplete?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int duration)? initial,
-    TResult Function(int duration)? runPause,
-    TResult Function(int duration)? runInProgress,
-    TResult Function()? runComplete,
-    required TResult orElse(),
-  }) {
-    if (runComplete != null) {
-      return runComplete();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(TimerInitial value) initial,
-    required TResult Function(TimerRunPause value) runPause,
-    required TResult Function(TimerRunInProgress value) runInProgress,
-    required TResult Function(TimerRunComplete value) runComplete,
-  }) {
-    return runComplete(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(TimerInitial value)? initial,
-    TResult? Function(TimerRunPause value)? runPause,
-    TResult? Function(TimerRunInProgress value)? runInProgress,
-    TResult? Function(TimerRunComplete value)? runComplete,
-  }) {
-    return runComplete?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(TimerInitial value)? initial,
-    TResult Function(TimerRunPause value)? runPause,
-    TResult Function(TimerRunInProgress value)? runInProgress,
-    TResult Function(TimerRunComplete value)? runComplete,
-    required TResult orElse(),
-  }) {
-    if (runComplete != null) {
-      return runComplete(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class TimerRunComplete implements TimerState {
-  const factory TimerRunComplete() = _$TimerRunCompleteImpl;
 }
